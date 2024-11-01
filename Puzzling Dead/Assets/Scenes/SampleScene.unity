@@ -516,9 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1199858a1e042c6449345da1b6f03d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  maxJumpForce: 0
-  jumpForceIncrement: 0
+  speed: 4
 --- !u!95 &1547057400
 Animator:
   serializedVersion: 5

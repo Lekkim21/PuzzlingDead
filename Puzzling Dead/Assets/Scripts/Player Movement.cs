@@ -6,22 +6,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
 
     [SerializeField] private int playerNumber;
+
+
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
-    private int activePlayer;
 
     private void Awake()
     {
         //Grab refernces for rigidbody and animation
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        activePlayer = 0;
     }
 
     private void Update()
     {
-        if(playerNumber == activePlayer) {
+        if(playerNumber == GameManager.instance.activePlayerNr) {
             float horizontalInput = Input.GetAxis("Horizontal");
             body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
 
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if(playerNumber == activePlayer) {
+        if(playerNumber == GameManager.instance.activePlayerNr) {
 
             body.velocity = new Vector2((body.velocity.x), speed);
             anim.SetTrigger("jump");

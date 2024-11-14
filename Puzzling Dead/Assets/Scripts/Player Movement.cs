@@ -48,12 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (playerNumber == GameManager.instance.activePlayerNr)
-        {
-            body.velocity = new Vector2(body.velocity.x, speed);
-            anim.SetTrigger("jump");
-            grounded = false;
-        }
+        body.velocity = new Vector2(body.velocity.x, speed);
+        anim.SetTrigger("jump");
+        grounded = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

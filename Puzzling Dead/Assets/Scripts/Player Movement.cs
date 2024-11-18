@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
 
     private void Update()
     {
@@ -42,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Set animator parameters
         anim.SetBool("Walk", horizontalInput != 0);
-        anim.SetBool("Grounded", grounded);
-
     }
 
     private void Jump()
@@ -51,11 +51,23 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
         grounded = false;
+        anim.SetBool("Grounded", grounded);
+  
+    }
+
+    private void Land() {
+        grounded = true;
+        anim.SetBool("Grounded", grounded);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-            grounded = true;
+        if (collision.gameObject.tag == "Ground") 
+            Land();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Ground") 
+            Land();
     }
 }

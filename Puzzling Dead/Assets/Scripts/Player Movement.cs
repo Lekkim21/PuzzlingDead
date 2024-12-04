@@ -3,14 +3,14 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Test
     [SerializeField] private float speed;
 
     [SerializeField] private int playerNumber;
 
+    public FeetControl m_someOtherScriptOnAnotherGameObject;
+
     private Rigidbody2D body;
     private Animator anim;
-    private bool grounded;
 
     private void Awake()
     {
@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
-
 
     private void Update()
     {
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if (Input.GetKey(KeyCode.Space) && grounded && playerIsActive)
+        if (Input.GetKey(KeyCode.Space) && m_someOtherScriptOnAnotherGameObject.isGrounded() && playerIsActive)
             Jump();
 
         // Set animator parameters
@@ -50,24 +49,13 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
-        grounded = false;
-        anim.SetBool("Grounded", grounded);
+        m_someOtherScriptOnAnotherGameObject.startJump();
+        anim.SetBool("Grounded", m_someOtherScriptOnAnotherGameObject.isGrounded());
   
     }
 
     private void Land() {
-        grounded = true;
+        bool grounded = m_someOtherScriptOnAnotherGameObject.isGrounded();
         anim.SetBool("Grounded", grounded);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground") 
-            Land();
-    }
-
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground") 
-            Land();
     }
 }

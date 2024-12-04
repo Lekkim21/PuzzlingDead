@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 38191734}
   - component: {fileID: 38191735}
   - component: {fileID: 38191736}
+  - component: {fileID: 38191737}
   m_Layer: 6
   m_Name: PlayerAFeet
   m_TagString: Untagged
@@ -197,7 +198,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -252,6 +253,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &38191737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38191733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734e525820edc478fa44c0c587be981c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &192743106
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerNumber: 1
+  m_someOtherScriptOnAnotherGameObject: {fileID: 0}
 --- !u!50 &1008883174
 Rigidbody2D:
   serializedVersion: 4
@@ -922,6 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerNumber: 0
+  m_someOtherScriptOnAnotherGameObject: {fileID: 0}
 --- !u!95 &1547057400
 Animator:
   serializedVersion: 5

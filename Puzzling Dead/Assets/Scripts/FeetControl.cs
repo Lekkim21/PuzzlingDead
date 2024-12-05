@@ -28,8 +28,6 @@ public class FeetControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision feet script");
-
         if (collision.gameObject.tag == "Ground") 
             grounded = true;
     }

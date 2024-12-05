@@ -6,9 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
 
     [SerializeField] private int playerNumber;
-
-    public FeetControl m_someOtherScriptOnAnotherGameObject;
-
+     
+    public FeetControl feetControl; 
     private Rigidbody2D body;
     private Animator anim;
 
@@ -38,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if (Input.GetKey(KeyCode.Space) && m_someOtherScriptOnAnotherGameObject.isGrounded() && playerIsActive)
+        if (Input.GetKey(KeyCode.Space) && playerIsActive && feetControl.isGrounded())
             Jump();
 
         // Set animator parameters
@@ -49,13 +48,8 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
-        m_someOtherScriptOnAnotherGameObject.startJump();
-        anim.SetBool("Grounded", m_someOtherScriptOnAnotherGameObject.isGrounded());
+        feetControl.startJump();
+        anim.SetBool("Grounded", true); 
   
-    }
-
-    private void Land() {
-        bool grounded = m_someOtherScriptOnAnotherGameObject.isGrounded();
-        anim.SetBool("Grounded", grounded);
     }
 }
